@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Custom sudoku grid styles */
+.sudoku-cell {
+  @apply aspect-square border border-gray-400 dark:border-gray-500;
+  @apply bg-white dark:bg-gray-900 cursor-pointer transition-all duration-200;
+  @apply flex items-center justify-center text-lg font-mono font-semibold;
+  @apply hover:bg-blue-50 dark:hover:bg-blue-900/20;
+}
+
+.sudoku-cell.selected {
+  @apply bg-blue-100 dark:bg-blue-900 border-2 border-primary;
+}
+
+.sudoku-cell.original {
+  @apply bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100;
+}
+
+.sudoku-cell.user-input {
+  @apply text-primary dark:text-blue-300;
+}
+
+.sudoku-cell.conflict {
+  @apply bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400;
+}
+
+.sudoku-cell.right-border {
+  @apply border-r-2 border-r-gray-800 dark:border-r-gray-300;
+}
+
+.sudoku-cell.bottom-border {
+  @apply border-b-2 border-b-gray-800 dark:border-b-gray-300;
+}
+
+/* Number button styles */
+.number-button {
+  @apply aspect-square bg-white dark:bg-gray-800 border-2 border-gray-200 dark:border-gray-600;
+  @apply rounded-lg font-mono font-semibold text-lg text-gray-900 dark:text-white;
+  @apply hover:border-primary hover:bg-primary hover:text-white;
+  @apply transition-all duration-200 flex items-center justify-center shadow-sm;
+  @apply focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2;
+}
+
+.number-button:active {
+  @apply transform scale-95;
+}
+
+/* Animation for win celebration */
+@keyframes celebration {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+.celebration {
+  animation: celebration 0.6s ease-in-out;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-500;
+}
+
+/* Responsive text sizing */
+@media (max-width: 640px) {
+  .sudoku-cell {
+    @apply text-base;
+  }
+  
+  .number-button {
+    @apply text-base;
+  }
+}
