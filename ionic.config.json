@@ -1,0 +1,8 @@
+{
+  "name": "Sudoku",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite",
+  "id": "6bb3c61d"
+}
